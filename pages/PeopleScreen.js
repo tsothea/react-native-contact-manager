@@ -1,21 +1,26 @@
 import React from "react";
-import {
-  FlatList,
-  View,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, View, Image, Text, TouchableOpacity } from "react-native";
+import Styles from "../assets/style/Styles";
+import { useSelector } from "react-redux";
+import Contact from "../layout/Contact";
 
-class PeopleScreen extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Welcome to People</Text>
-      </View>
-    );
-  }
-}
+const PeopleScreen = (navigation) => {
+  const state = useSelector((state) => state);
+  const people = state.people;
+  return (
+    <View style={Styles.container}>
+      <FlatList
+        data={people}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <Contact item={{ item }} navigation={{ navigation }} />
+            </View>
+          );
+        }}
+      />
+    </View>
+  );
+};
 
 export default PeopleScreen;

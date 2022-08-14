@@ -1,13 +1,13 @@
 import axios from "axios";
 import {
-  // addContact,
-  // addFavorite,
+  addContact,
+  addFavorite,
   fetchPeople,
-  // removeContact,
-  // removeFavorite,
+  removeContact,
+  removeFavorite,
 } from "./actions";
 import { fetchCompanies } from "./companyAction";
-//import { addNewContact, editContact } from "./contactAction";
+import { addNewContact, editContact } from "./contactAction";
 import {
   REACT_APP_FIREBASE_URL,
   REACT_APP_GET_PEOPLE,
@@ -38,53 +38,41 @@ export const getPeople = async (dispatch) => {
     });
 };
 
-// export const saveContact = async (key, dispatch) => {
-//   let updateData = { isContact: true };
-//   await axios
-//     .patch(
-//       REACT_APP_FIREBASE_URL + "/people/" + key + ".json",
-//       updateData
-//     )
-//     .then(() => {
-//       dispatch(addContact(key));
-//     });
-// };
+export const saveContact = async (key, dispatch) => {
+  let updateData = { isContact: true };
+  await axios
+    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .then(() => {
+      dispatch(addContact(key));
+    });
+};
 
-// export const deleteContact = async (key, dispatch) => {
-//   let updateData = { isContact: false, isFavourite: false };
-//   await axios
-//     .patch(
-//       REACT_APP_FIREBASE_URL + "/people/" + key + ".json",
-//       updateData
-//     )
-//     .then(() => {
-//       dispatch(removeContact(key));
-//     });
-// };
+export const deleteContact = async (key, dispatch) => {
+  let updateData = { isContact: false, isFavourite: false };
+  await axios
+    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .then(() => {
+      dispatch(removeContact(key));
+    });
+};
 
-// export const saveFavourite = async (key, dispatch) => {
-//   let updateData = { isFavourite: true };
-//   await axios
-//     .patch(
-//       REACT_APP_FIREBASE_URL + "/people/" + key + ".json",
-//       updateData
-//     )
-//     .then(() => {
-//       dispatch(addFavorite(key));
-//     });
-// };
+export const saveFavourite = async (key, dispatch) => {
+  let updateData = { isFavourite: true };
+  await axios
+    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .then(() => {
+      dispatch(addFavorite(key));
+    });
+};
 
-// export const deleteFavourite = async (key, dispatch) => {
-//   let updateData = { isFavourite: false };
-//   await axios
-//     .patch(
-//       REACT_APP_FIREBASE_URL + "/people/" + key + ".json",
-//       updateData
-//     )
-//     .then(() => {
-//       dispatch(removeFavorite(key));
-//     });
-// };
+export const deleteFavourite = async (key, dispatch) => {
+  let updateData = { isFavourite: false };
+  await axios
+    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .then(() => {
+      dispatch(removeFavorite(key));
+    });
+};
 
 export const getCompanies = async (dispatch) => {
   return await axios
@@ -98,46 +86,46 @@ export const getCompanies = async (dispatch) => {
     });
 };
 
-// export const addNewCompany = async (company, dispatch) => {
-//   return await axios
-//     .post(REACT_APP_FIREBASE_URL + "/companies.json", company)
-//     .then(() => {
-//       dispatch(addCompany(company));
-//     });
-// };
+export const addNewCompany = async (company, dispatch) => {
+  return await axios
+    .post(REACT_APP_FIREBASE_URL + "/companies.json", company)
+    .then(() => {
+      dispatch(addCompany(company));
+    });
+};
 
-// export const editCompany = async (dispatch) => {
-//   return await axios
-//     .get(REACT_APP_FIREBASE_URL + "/companies.json")
-//     .then((response) => {
-//       dispatch(fetchCompanies(response.data));
-//     });
-// };
+export const editCompany = async (dispatch) => {
+  return await axios
+    .get(REACT_APP_FIREBASE_URL + "/companies.json")
+    .then((response) => {
+      dispatch(fetchCompanies(response.data));
+    });
+};
 
-// export const removeCompany = async (key, dispatch) => {
-//   return await axios
-//     .delete(REACT_APP_FIREBASE_URL + "/companies/" + key + ".json")
-//     .then(() => {
-//       dispatch(deleteCompany(key));
-//     });
-// };
+export const removeCompany = async (key, dispatch) => {
+  return await axios
+    .delete(REACT_APP_FIREBASE_URL + "/companies/" + key + ".json")
+    .then(() => {
+      dispatch(deleteCompany(key));
+    });
+};
 
-// export const saveNewContact = async (formData, dispatch) => {
-//   await axios
-//     .post(REACT_APP_FIREBASE_URL + "/people.json", formData)
-//     .then((response) => {
-//       formData["key"] = response.data["name"];
-//       dispatch(addNewContact(formData));
-//     });
-// };
+export const saveNewContact = async (formData, dispatch) => {
+  await axios
+    .post(REACT_APP_FIREBASE_URL + "/people.json", formData)
+    .then((response) => {
+      formData["key"] = response.data["name"];
+      dispatch(addNewContact(formData));
+    });
+};
 
-// export const updateNewContact = async (formData, dispatch) => {
-//   await axios
-//     .patch(
-//       REACT_APP_FIREBASE_URL + "/people/" + formData.key + ".json",
-//       formData
-//     )
-//     .then(() => {
-//       dispatch(editContact(formData.key, formData));
-//     });
-// };
+export const updateNewContact = async (formData, dispatch) => {
+  await axios
+    .patch(
+      REACT_APP_FIREBASE_URL + "/people/" + formData.key + ".json",
+      formData
+    )
+    .then(() => {
+      dispatch(editContact(formData.key, formData));
+    });
+};

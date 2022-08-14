@@ -1,15 +1,24 @@
-import { Feather } from "@expo/vector-icons";
+import "react-native-gesture-handler";
+import * as React from "react";
+import { Button, View } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 
-function Search({ navigation }) {
+const Search = (props) => {
+  const navigate = useNavigate();
+  console.log(props.navigation.navigate);
   return (
-    <Feather
-      name="search"
-      size={22}
-      color="black"
-      style={{ marginRight: 5 }}
-      onPress={() => navigation.navigate("Favorites")}
-    />
+    <View style={{ marginRight: 20, flexDirection: "row" }}>
+      <TextInput
+        placeholder="Search"
+        style={{ width: 250, borderWidth: 1, padding: 5 }}
+      />
+      <Button
+        title="Cancel"
+        style={{ width: 80 }}
+        onPress={navigate.navigate(-1)}
+      />
+    </View>
   );
-}
+};
 
 export default Search;

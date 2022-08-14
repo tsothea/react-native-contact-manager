@@ -8,14 +8,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-class SettingScreen extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Welcome to Setting</Text>
-      </View>
-    );
-  }
-}
+const SettingScreen = () => {
+  return (
+    <View>
+      <Text>Welcome to Setting</Text>
+    </View>
+  );
+};
 
 export default SettingScreen;
