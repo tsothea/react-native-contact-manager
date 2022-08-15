@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  FlatList,
-  View,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text } from "react-native";
 
 const SettingScreen = () => {
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   Linking,
   Button,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 import {
   deleteContact,
   deleteFavourite,
@@ -17,22 +17,46 @@ import {
 } from "../service";
 import { useDispatch } from "react-redux";
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
   let item = route.params.item;
+  //const [item, setItem] = useState(param);
+  const [isFavourite, setFavourite] = useState(item["isFavourite"]);
+  const [isContact, setContact] = useState(item["isContact"]);
+
+  const editContact = (navigation) => {
+    navigation.navigate("ContactForm", {
+      item: route.params.item,
+    });
+  };
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: item["name"],
+      headerRight: () => (
+        <TouchableOpacity onPress={() => editContact(navigation)}>
+          <Entypo name="edit" size={24} color="black" style={{ padding: 10 }} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   const addContact = () => {
+    setContact(true);
     saveContact(item["key"], dispatch);
   };
   const removeContact = () => {
+    setContact(false);
+    setFavourite(false);
     deleteContact(item["key"], dispatch);
   };
 
   const addFavorite = () => {
+    setFavourite(true);
     saveFavourite(item["key"], dispatch);
   };
 
   const removeFavorite = () => {
+    setFavourite(false);
     deleteFavourite(item["key"], dispatch);
   };
 
@@ -121,29 +145,29 @@ const DetailScreen = ({ route }) => {
         <Text style={styles.item}>Position: {item["position"]}</Text>
         <Text style={styles.item}>City: {item["city"]}</Text>
         <Text style={styles.item}>
-          Is Contact: {item["isContact"] ? "True" : "False"}
+          Is Contact: {isContact ? "True" : "False"}
         </Text>
         <Text style={styles.item}>
-          Is Favorite: {item["isFavourite"] ? "True" : "False"}
+          Is Favorite: {isFavourite ? "True" : "False"}
         </Text>
         <View style={{ flexDirection: "row", marginTop: 50 }}>
           <View style={{ padding: 5 }}>
-            {item["isContact"] && (
+            {isContact && (
               <Button
                 title="Delete from contacts"
                 onPress={() => removeContact()}
               />
             )}
-            {!item["isContact"] && (
+            {!isContact && (
               <Button title="Add to contacts" onPress={() => addContact()} />
             )}
           </View>
           <View style={{ padding: 5 }}>
-            {item["isFavourite"] && item["isContact"] && (
+            {isFavourite && isContact && (
               <Button title="Delete from favorites" onPress={removeFavorite} />
             )}
 
-            {item["isContact"] && !item["isFavourite"] && (
+            {isContact && !isFavourite && (
               <Button title="Add To Favourites" onPress={addFavorite} />
             )}
           </View>

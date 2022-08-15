@@ -10,6 +10,7 @@ const Contact = (props) => {
           item: props.item.item,
         })
       }
+      style={{ marginLeft: 10 }}
     >
       <View style={Styles.containerItem}>
         <Image

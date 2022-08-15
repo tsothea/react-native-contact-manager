@@ -46,22 +46,7 @@ function App() {
           component={Nav}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          options={({ navigation }) => ({
-            headerRight: () => (
-              <TouchableOpacity onPress={() => editContact(navigation)}>
-                <Entypo
-                  name="edit"
-                  size={24}
-                  color="black"
-                  style={{ padding: 10 }}
-                />
-              </TouchableOpacity>
-            ),
-          })}
-          name="DetailScreen"
-          component={DetailScreen}
-        />
+        <Stack.Screen name="DetailScreen" component={DetailScreen} />
         <Stack.Screen
           name="Search"
           component={SearchScreen}

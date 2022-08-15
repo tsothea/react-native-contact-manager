@@ -1,21 +1,31 @@
 import "react-native-gesture-handler";
-import * as React from "react";
+import React from "react";
 import { Button, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { useDispatch } from "react-redux";
+import { filterPeople } from "../service/actions";
 
 const Search = (props) => {
-  const navigate = useNavigate();
-  console.log(props.navigation.navigate);
+  const dispatch = useDispatch();
+  const dosearch = (text) => {
+    dispatch(filterPeople(text));
+  };
   return (
     <View style={{ marginRight: 20, flexDirection: "row" }}>
       <TextInput
         placeholder="Search"
-        style={{ width: 250, borderWidth: 1, padding: 5 }}
+        style={{
+          width: 250,
+          borderWidth: 1,
+          borderColor: "#999999",
+          padding: 5,
+        }}
+        onChangeText={(text) => dosearch(text)}
       />
       <Button
         title="Cancel"
         style={{ width: 80 }}
-        onPress={navigate.navigate(-1)}
+        onPress={() => props.navigation.goBack()}
       />
     </View>
   );
