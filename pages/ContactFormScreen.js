@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableHighlight,
   ScrollView,
+  Button,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { saveNewContact, updateNewContact } from "../service";
@@ -14,7 +15,17 @@ const ContactFormScreen = (route) => {
   const dispatch = useDispatch();
   let item = route.route.params ? route.route.params.item : {};
   const [formContact, setFormContact] = useState(item);
-  //console.log(route);
+
+  useLayoutEffect(() => {
+    route.navigation.setOptions({
+      title: item["name"],
+      headerRight: () => (
+        <View style={{ marginRight: 20 }}>
+          <Button title="Save" onPress={saveContact}></Button>
+        </View>
+      ),
+    });
+  }, [route.navigation]);
 
   const saveContact = () => {
     if (formContact !== null && formContact.key !== undefined) {

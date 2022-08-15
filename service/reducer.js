@@ -206,9 +206,14 @@ const reducer = (state = initialState, action) => {
         people,
       };
     case REACT_APP_DELETE_CONTACT:
+      people = state.people.filter((person) => {
+        if (person.key !== action.payload.key) {
+          return person;
+        }
+      });
       return {
         ...state,
-        companies: action.payload.company,
+        people,
       };
     default:
       return {

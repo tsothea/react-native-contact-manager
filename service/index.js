@@ -7,24 +7,12 @@ import {
   removeFavorite,
 } from "./actions";
 import { fetchCompanies } from "./companyAction";
-import { addNewContact, editContact } from "./contactAction";
 import {
-  REACT_APP_FIREBASE_URL,
-  REACT_APP_GET_PEOPLE,
-  REACT_APP_FILTER_PEOPLE,
-  REACT_APP_ADD_CONTACT,
-  REACT_APP_REMOVE_CONTACT,
-  REACT_APP_ADD_FAVOURITE,
-  REACT_APP_REMOVE_FAVOURITE,
-  REACT_APP_GET_LOCATION,
-  REACT_APP_VIEW_DISPLAY,
-  REACT_APP_GET_COMPANIES,
-  REACT_APP_DELETE_COMPANY,
-  REACT_APP_EDIT_COMPANY,
-  REACT_APP_ADD_NEW_CONTACT,
-  REACT_APP_EDIT_CONTACT,
-  REACT_APP_DELETE_CONTACT,
-} from "@env";
+  addNewContact,
+  editContact,
+  forceDeleteContact,
+} from "./contactAction";
+import { REACT_APP_FIREBASE_URL } from "@env";
 
 export const getPeople = async (dispatch) => {
   return await axios
@@ -127,5 +115,13 @@ export const updateNewContact = async (formData, dispatch) => {
     )
     .then(() => {
       dispatch(editContact(formData.key, formData));
+    });
+};
+
+export const forceRemoveContact = async (key, dispatch) => {
+  return await axios
+    .delete(REACT_APP_FIREBASE_URL + "/people/" + key + ".json")
+    .then(() => {
+      dispatch(forceDeleteContact(key));
     });
 };

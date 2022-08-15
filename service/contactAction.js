@@ -18,7 +18,7 @@ export const editContact = (key, params) => {
   };
 };
 
-export const deleteContact = (key, params) => {
+export const forceDeleteContact = (key, params) => {
   return {
     type: REACT_APP_DELETE_CONTACT,
     payload: { key: key, params: params },

@@ -60,17 +60,7 @@ function App() {
           })}
         />
 
-        <Stack.Screen
-          name="ContactForm"
-          component={ContactFormScreen}
-          options={{
-            headerRight: () => (
-              <View style={{ marginRight: 20 }}>
-                <Button title="Save" onPress={() => alert("Hello")}></Button>
-              </View>
-            ),
-          }}
-        />
+        <Stack.Screen name="ContactForm" component={ContactFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

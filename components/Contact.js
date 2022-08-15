@@ -5,21 +5,18 @@ import Styles from "../assets/style/Styles";
 const Contact = (props) => {
   return (
     <TouchableOpacity
-      onPress={() =>
-        props.navigation.navigation.navigation.navigate("DetailScreen", {
-          item: props.item.item,
-        })
-      }
+      onPress={() => {
+        props.navigation.navigate("DetailScreen", {
+          item: props.item,
+        });
+      }}
     >
       <View style={Styles.containerItem}>
-        <Image
-          source={{ uri: props.item.item.avatar }}
-          style={Styles.thumbnail}
-        />
+        <Image source={{ uri: props.item.avatar }} style={Styles.thumbnail} />
         <View style={Styles.rightContainer}>
-          <Text style={Styles.title}>{props.item.item.name}</Text>
+          <Text style={Styles.title}>{props.item.name}</Text>
           <Text style={Styles.position}>
-            {props.item.item.company}, {props.item.item.position}
+            {props.item.company}, {props.item.position}
           </Text>
         </View>
       </View>

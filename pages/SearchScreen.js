@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Text, View, FlatList } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import { useSelector } from "react-redux";
 import Styles from "../assets/style/Styles";
-import Contact from "../layout/Contact";
+import ListContacts from "../components/ListContacts";
 
 const SearchScreen = (navigation) => {
   const state = useSelector((state) => state);
@@ -10,16 +10,7 @@ const SearchScreen = (navigation) => {
 
   return (
     <View style={Styles.container}>
-      <FlatList
-        data={people}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <Contact item={{ item }} navigation={{ navigation }} />
-            </View>
-          );
-        }}
-      />
+      <ListContacts data={people} navigation={navigation.navigation} />
     </View>
   );
 };
