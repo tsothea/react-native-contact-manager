@@ -6,7 +6,12 @@ import {
   removeContact,
   removeFavorite,
 } from "./actions";
-import { fetchCompanies } from "./companyAction";
+import {
+  addCompany,
+  deleteCompany,
+  fetchCompanies,
+  updateCompany,
+} from "./companyAction";
 import {
   addNewContact,
   editContact,
@@ -82,11 +87,11 @@ export const addNewCompany = async (company, dispatch) => {
     });
 };
 
-export const editCompany = async (dispatch) => {
+export const editCompany = async (company, dispatch) => {
   return await axios
     .get(REACT_APP_FIREBASE_URL + "/companies.json")
-    .then((response) => {
-      dispatch(fetchCompanies(response.data));
+    .then(() => {
+      dispatch(updateCompany(company));
     });
 };
 

@@ -6,7 +6,7 @@ import ListContacts from "../components/ListContacts";
 
 const ContactsScreen = (navigation) => {
   const state = useSelector((state) => state);
-  const contacts = state.people.filter((person) => person.isContact);
+  const contacts = state.listPeople.filter((person) => person.isContact);
   return (
     <View style={Styles.container}>
       <ListContacts data={contacts} navigation={navigation.navigation} />

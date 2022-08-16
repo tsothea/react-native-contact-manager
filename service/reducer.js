@@ -174,9 +174,15 @@ const reducer = (state = initialState, action) => {
         companies: [...state.companies, action.payload.company],
       };
     case REACT_APP_EDIT_COMPANY:
+      companies = state.companies.map((company) => {
+        if (company.key === action.payload.company.key) {
+          return action.payload.company;
+        }
+        return company;
+      });
       return {
         ...state,
-        companies: action.payload.companies,
+        companies,
       };
     case REACT_APP_DELETE_COMPANY:
       companies = state.companies.filter((company) => {

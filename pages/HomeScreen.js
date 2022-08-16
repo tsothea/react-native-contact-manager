@@ -15,7 +15,7 @@ import ListContacts from "../components/ListContacts";
 
 const HomeScreen = (navigation) => {
   const state = useSelector((state) => state);
-  const people = state.people;
+  const people = state.listPeople;
   return (
     <View style={Styles.container}>
       <ListContacts data={people} navigation={navigation.navigation} />

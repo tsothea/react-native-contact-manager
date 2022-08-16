@@ -6,7 +6,7 @@ import ListContacts from "../components/ListContacts";
 
 const FavoritesScreen = (navigation) => {
   const state = useSelector((state) => state);
-  const favorites = state.people.filter((person) => person.isFavourite);
+  const favorites = state.listPeople.filter((person) => person.isFavourite);
   return (
     <View style={Styles.container}>
       <ListContacts data={favorites} navigation={navigation.navigation} />

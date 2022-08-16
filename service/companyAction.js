@@ -1,5 +1,6 @@
 import {
   REACT_APP_GET_COMPANIES,
+  REACT_APP_ADD_COMPANY,
   REACT_APP_DELETE_COMPANY,
   REACT_APP_EDIT_COMPANY,
 } from "@env";
@@ -18,7 +19,7 @@ export const addCompany = (company) => {
   };
 };
 
-export const editCompany = (company) => {
+export const updateCompany = (company) => {
   return {
     type: REACT_APP_EDIT_COMPANY,
     payload: { company: company },
