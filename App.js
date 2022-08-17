@@ -9,8 +9,6 @@ import { createStore } from "redux";
 import Nav from "./layout/Nav";
 import { createStackNavigator } from "@react-navigation/stack";
 import DetailScreen from "./pages/DetailScreen";
-import { TouchableOpacity, Button, View } from "react-native";
-import { Entypo } from "@expo/vector-icons";
 import SearchScreen from "./pages/SearchScreen";
 import ContactFormScreen from "./pages/ContactFormScreen";
 import Search from "./layout/Search";
@@ -33,10 +31,6 @@ function App() {
     getPeople(dispatch);
     getCompanies(dispatch);
   });
-
-  const editContact = (navigation) => {
-    navigation.navigate("ContactForm");
-  };
 
   return (
     <NavigationContainer>

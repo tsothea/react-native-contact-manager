@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,11 @@ const Search = (props) => {
   const dosearch = (text) => {
     dispatch(filterPeople(text));
   };
+
+  useEffect(() => {
+    dispatch(filterPeople(""));
+  });
+
   return (
     <View style={{ marginRight: 20, flexDirection: "row" }}>
       <TextInput

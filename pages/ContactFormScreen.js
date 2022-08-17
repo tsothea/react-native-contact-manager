@@ -25,16 +25,20 @@ const ContactFormScreen = (route) => {
         </View>
       ),
     });
-  }, [route.navigation]);
+  });
 
   const saveContact = () => {
     if (formContact !== null && formContact.key !== undefined) {
       updateNewContact(formContact, dispatch);
     } else {
+      console.log(formContact);
       saveNewContact(formContact, dispatch);
     }
 
-    route.navigation.goBack();
+    //route.navigation.state.params.updateData(formContact);
+    route.navigation.navigate("DetailScreen", {
+      item: formContact,
+    });
   };
 
   const updateFormValue = (values) => {

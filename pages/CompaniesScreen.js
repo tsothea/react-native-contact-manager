@@ -123,7 +123,7 @@ const CompaniesScreen = (navigation) => {
             />
           </View>
           <View style={styles.modalView}>
-            <Text style={{ textAlign: "left" }}>Company Name: </Text>
+            <Text style={{ textAlign: "left" }}>Company Name : </Text>
             <TextInput
               name="name"
               value={companyForm.name ? companyForm.name : ""}

@@ -54,6 +54,7 @@ const searchbyLocation = (person, location) => {
 const reducer = (state = initialState, action) => {
   let people = [];
   let companies = [];
+  let listPeople = [];
   switch (action.type) {
     case REACT_APP_GET_PEOPLE:
       return {
@@ -80,7 +81,7 @@ const reducer = (state = initialState, action) => {
         people,
       };
     case REACT_APP_ADD_CONTACT:
-      people = state.listPeople.filter((person) => {
+      listPeople = state.listPeople.filter((person) => {
         if (person.key === action.payload.key) {
           person["isContact"] = true;
         }
@@ -92,10 +93,10 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     case REACT_APP_REMOVE_CONTACT:
-      people = state.listPeople.filter((person) => {
+      listPeople = state.listPeople.filter((person) => {
         if (person.key === action.payload.key) {
           person["isContact"] = false;
           person["isFavourite"] = false;
@@ -108,10 +109,10 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     case REACT_APP_ADD_FAVOURITE:
-      people = state.listPeople.filter((person) => {
+      listPeople = state.listPeople.filter((person) => {
         if (person.key === action.payload.key) {
           person["isFavourite"] = true;
         }
@@ -123,10 +124,10 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     case REACT_APP_REMOVE_FAVOURITE:
-      people = state.listPeople.filter((person) => {
+      listPeople = state.listPeople.filter((person) => {
         if (person.key === action.payload.key) {
           person["isFavourite"] = false;
         }
@@ -138,13 +139,13 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     case REACT_APP_GET_LOCATION:
       if (action.payload.location === "") {
-        people = state.listPeople;
+        listPeople = state.listPeople;
       } else {
-        people = state.listPeople.filter((person) => {
+        listPeople = state.listPeople.filter((person) => {
           if (
             searchContact(person, state.search.toLowerCase()) &&
             searchbyLocation(person, action.payload.location)
@@ -154,7 +155,7 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        people,
+        listPeople,
         location: action.payload.location,
       };
     case REACT_APP_VIEW_DISPLAY:
@@ -201,7 +202,7 @@ const reducer = (state = initialState, action) => {
         people: [...state.people, action.payload.params],
       };
     case REACT_APP_EDIT_CONTACT:
-      people = state.people.map((person) => {
+      listPeople = state.listPeople.map((person) => {
         if (person.key === action.payload.key) {
           return action.payload.params;
         }
@@ -209,17 +210,17 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     case REACT_APP_DELETE_CONTACT:
-      people = state.people.filter((person) => {
+      listPeople = state.listPeople.filter((person) => {
         if (person.key !== action.payload.key) {
           return person;
         }
       });
       return {
         ...state,
-        people,
+        listPeople,
       };
     default:
       return {

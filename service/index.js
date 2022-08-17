@@ -82,14 +82,17 @@ export const getCompanies = async (dispatch) => {
 export const addNewCompany = async (company, dispatch) => {
   return await axios
     .post(REACT_APP_FIREBASE_URL + "/companies.json", company)
-    .then(() => {
+    .then((response) => {
+      company["key"] = response.data["name"];
       dispatch(addCompany(company));
     });
 };
 
 export const editCompany = async (company, dispatch) => {
   return await axios
-    .get(REACT_APP_FIREBASE_URL + "/companies.json")
+    .patch(REACT_APP_FIREBASE_URL + "/companies/" + company["key"] + ".json", {
+      name: company["name"],
+    })
     .then(() => {
       dispatch(updateCompany(company));
     });
