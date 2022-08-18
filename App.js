@@ -53,7 +53,6 @@ function App() {
             ),
           })}
         />
-
         <Stack.Screen name="ContactForm" component={ContactFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>

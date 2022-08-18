@@ -31,11 +31,9 @@ const ContactFormScreen = (route) => {
     if (formContact !== null && formContact.key !== undefined) {
       updateNewContact(formContact, dispatch);
     } else {
-      console.log(formContact);
       saveNewContact(formContact, dispatch);
     }
 
-    //route.navigation.state.params.updateData(formContact);
     route.navigation.navigate("DetailScreen", {
       item: formContact,
     });
